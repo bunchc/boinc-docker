@@ -1,8 +1,11 @@
-from ubuntu:14.04
+FROM resin/rpi-raspbian:latest
 
-RUN apt-get update && apt-get -y upgrade && apt-get clean all
-RUN apt-get install -y build-essential software-properties-common boinc
 ADD runboinc.sh /var/lib/boinc-client/runboinc.sh
-RUN chmod +x /var/lib/boinc-client/runboinc.sh
+RUN apt-get update -qq \
+    && apt-get -qqy upgrade \
+    && apt-get clean all \
+    && apt-get install -qqy boinc \
+    && chmod +x /var/lib/boinc-client/runboinc.sh
+
 WORKDIR /var/lib/boinc-client
 CMD ["./runboinc.sh"]
