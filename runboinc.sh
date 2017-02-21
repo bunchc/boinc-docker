@@ -8,7 +8,8 @@ until pidof -x boinc; do {
     sleep 1
 } done
 
-until /usr/bin/boinccmd --join_acct_mgr http://bam.boincstats.com "$BAM_USER" "$BAM_PASS"; do {
+until [[ $(/usr/bin/boinccmd --join_acct_mgr http://bam.boincstats.com "$BAM_USER" "$BAM_PASS") == "poll status: operation in progress" ]]
+do {
     echo "Trying again"
     sleep 1
 }; done
