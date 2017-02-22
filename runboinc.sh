@@ -1,7 +1,17 @@
-#!/bin/bash
-set -x
-[[ "$BAM_USER" ]] || printf "You need to supply a BAM user account"
-[[ "$BAM_PASS" ]] || printf "You need to supply a BAM password"
+#!/bin/bash -
+#set -eux
+#title          :runboinc.sh
+#description    : Runs the BOINC client & Attaches to BAM
+#author         :Cody
+#date           :20170221
+#version        :
+#usage          :bash ./runboinc.sh
+#notes          :This will make sure BOINC is running, then attach to BAM
+#bash_version   :3.2.57(1)-release
+#============================================================================
+
+: "${BAM_USER:?You need to supply a BAM user account}"
+: "${BAM_PASS:?You need to supply a BAM password}"
 
 function run_until() {
     OUTPUT=""
